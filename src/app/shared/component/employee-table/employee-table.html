@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Dept</th>
+            <th>Salary</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Is Active</th>
+            <th>Edit</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (emp of employees(); track emp.empId; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ emp.empName }}</td>
+              <td>{{ emp.empLastName }}</td>
+              <td>{{ emp.empDept }}</td>
+              <td>{{ emp.empSalry }}</td>
+              <td>{{ emp.empPhone }}</td>
+              <td>{{ emp.empAddress }}</td>
+              <td>{{ emp.isActive   ? 'Yes' : 'No'}}</td>
+              <td>
+                <button mat-raised-button (click)="onEditEmployee(emp)">Edit</button>
+              </td>
+              <td>
+                <button mat-raised-button (click)="onRemoveEmployee(emp.empId)">Remove</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

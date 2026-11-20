@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-body">
+    <form (submit)="onAddEmployee($event)">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [formField]="employeeForm.empName" />
+        @if (employeeForm.empName().touched() && employeeForm.empName().invalid()) {
+          @for (error of employeeForm.empName().errors(); track $index) {
+            <mat-error>{{ error.message }}</mat-error>
+          }
+        }
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Last Name*</mat-label>
+        <input matInput type="text" [formField]="employeeForm.empLastName" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Dept*</mat-label>
+        <mat-select matInput [formField]="employeeForm.empDept">
+          <mat-option value="DEVOPS">DEVOPS</mat-option>
+          <mat-option value="FRONT-END DEV">FRONT-END DEV</mat-option>
+          <mat-option value="BACK-END DEV">BACK-END DEV</mat-option>
+          <mat-option value="FULL-STACK DEV">FULL-STACK DEV</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Salary*</mat-label>
+        <input matInput type="text" [formField]="employeeForm.empSalry" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Phone*</mat-label>
+        <input type="text" matInput [formField]="employeeForm.empPhone" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Address*</mat-label>
+        <textarea matInput [formField]="employeeForm.empAddress"></textarea>
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Is Active*</mat-label>
+        <mat-select matInput [formField]="employeeForm.isActive">
+          <mat-option [value]="true">Yes</mat-option>
+          <mat-option [value]="false">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+      @if (!isInEditMode) {
+        <button mat-raised-button class="w-100" type="submit">Add Employee</button>
+      } @else {
+        <button mat-raised-button class="w-100" type="button" (click)="updateEmployee()">Update Employee</button>
+      }
+    </form>
+  </div>
+</div>
